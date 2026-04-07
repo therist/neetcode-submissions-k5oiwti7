@@ -1,0 +1,45 @@
+class RandomizedSet {
+    constructor() {
+        this.numMap = new Map();
+        this.size = 0;
+    }
+
+    /**
+     * @param {number} val
+     * @return {boolean}
+     */
+    insert(val) {
+        if(this.numMap.has(val)) return false;
+        this.numMap.set(val, 1);
+        this.size++;
+        return true;
+    }
+
+    /**
+     * @param {number} val
+     * @return {boolean}
+     */
+    remove(val) {
+        if(!this.numMap.has(val)) return false;
+        this.numMap.delete(val);
+        this.size--;
+        return true;
+    }
+
+    /**
+     * @return {number}
+     */
+    getRandom() {
+        const keys = Array.from(this.numMap.keys());
+        const idx = Math.floor(Math.random() * this.size);
+        return keys[idx];
+    }
+}
+
+/**
+ * Your RandomizedSet object will be instantiated and called as such:
+ * var obj = new RandomizedSet()
+ * var param_1 = obj.insert(val)
+ * var param_2 = obj.remove(val)
+ * var param_3 = obj.getRandom()
+ */
